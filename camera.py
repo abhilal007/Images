@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
 import time
+import face_recognition
 
 cap = cv2.VideoCapture(0)
 count = 0
@@ -13,6 +14,9 @@ while(True):
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     if count > 5 and count<10:
         cv2.imwrite("frame%d.jpg" %count, frame)
+        face_locations = face_recognition.face_locations(frame)
+        counter = len(face_locations)
+        print(counter)
     count +=1
     # Display the resulting frame
     cv2.imshow('frame',frame)
